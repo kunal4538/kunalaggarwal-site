@@ -188,6 +188,24 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 @keyframes fin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 .br b{flex:none;width:54px;text-align:center;font-size:11.5px;font-weight:700;padding:2px 0;border-radius:4px}
 .br .tg1{background:rgba(255,107,87,.2);color:#ff8a78}.br .tg2{background:rgba(127,231,193,.2);color:var(--m)}
+
+.cmp{position:relative;height:236px;border-radius:10px;overflow:hidden;margin-top:14px;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize;--p:50%}
+.cp{position:absolute;inset:0;padding:16px 20px;display:grid;grid-template-columns:1fr 1.25fr;gap:14px 20px;align-content:center}
+.cp.af .l{order:2;padding-left:24px}.cp.af .r{order:1}.cp.bf{background:#2a1618}.cp.af{background:#0f2a23;clip-path:inset(0 0 0 var(--p))}
+.cp .l,.cp .r{display:flex;flex-direction:column;gap:6px;min-width:0}
+.cmp .tag{align-self:flex-start;font:700 11.5px 'Bricolage Grotesque',sans-serif;padding:2px 9px;border-radius:4px}
+.cmp .t1{background:rgba(255,107,87,.25);color:#ff8a78}.cmp .t2{background:rgba(127,231,193,.22);color:var(--m)}
+.cmp .big{font-size:clamp(28px,5.5vw,44px);font-weight:800;line-height:1}.cmp .bf .big{color:#ff8a78}.cmp .af .big{color:var(--m)}
+.cmp .sub2{font-size:12.5px;color:var(--muted)}
+.cmp .stp{margin:0 0 0 18px;font-size:13px;line-height:1.5;color:#e4dcf0}.cmp .stp li{margin:2px 0;font-size:13px}
+.cmp .days{display:flex;gap:4px;margin-top:6px}.cmp .days i{flex:1;height:10px;border-radius:3px;background:#ff6b57;opacity:.75}
+.cmp .gen{align-self:flex-start;margin-top:6px;background:var(--y);color:var(--ink);font-weight:800;font-size:13px;padding:7px 14px;border-radius:8px;box-shadow:0 3px 0 #b79f12}
+.hdl{position:absolute;top:0;bottom:0;left:var(--p);width:3px;margin-left:-1.5px;background:#f7f1e8;z-index:3;cursor:ew-resize}
+.hdl:focus-visible{outline:3px solid var(--y);outline-offset:4px}
+.hdl b{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:var(--y);box-shadow:0 3px 0 #b79f12}
+.hdl b::before,.hdl b::after{content:"";position:absolute;top:50%;margin-top:-6px;border:6px solid transparent}
+.hdl b::before{left:3px;border-right-color:var(--ink)}.hdl b::after{right:3px;border-left-color:var(--ink)}
+@media(max-width:560px){.cmp{height:270px}.cp{grid-template-columns:1fr 1fr;padding:14px}.cmp .stp{margin-left:14px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -346,7 +364,7 @@ if(reduce){for(var j=0;j<6;j++)cards.push({s:j*1.6,y:H*.74+40+(j*37)%Math.max(10
 d.addEventListener('visibilitychange',function(){if(d.hidden){run=false}else if(!run){run=true;requestAnimationFrame(frame)}});
 })();
 var D={
-a1:{t:'A 5-7 day report becomes one click',counts:[{n:10,suf:' features',l:'in the MVP'},{n:3,suf:' months',l:'to launch'}],rows:[{l:'Reporting cycle',a:'5-7 days, manual',b:'1 click, real time',wa:100,wb:4}]},
+a1:{t:'A 5-7 day report becomes one click',counts:[{n:10,suf:' features',l:'in the MVP'},{n:3,suf:' months',l:'to launch'}],slider:true},
 a2:{t:'APAC incentive platform',counts:[{n:200,pre:'+',suf:'%',l:'adoption across APAC'},{n:600,pre:'~',l:'colleagues off Excel'}],rows:[{l:'Plan queries per market',a:'60-70',b:'single digits',wa:100,wb:12}]},
 a3:{t:'Incentive platform rollout',counts:[{n:20,l:'features shipped'},{n:4,l:'new markets onboarded'},{n:100,suf:'%',l:'payout accuracy'}]},
 a4:{t:'GPT/Copilot deck tool',rows:[{l:'Approval deck creation',a:'3-4 weeks',b:'1 week',wa:100,wb:29},{l:'Review rounds',a:'10-12',b:'4-5',wa:100,wb:41}]},
@@ -371,14 +389,25 @@ x.clearRect(0,0,W,H);var mv=Math.max.apply(null,bins);
 for(var q=0;q<B;q++){var hh=bins[q]/mv*(H-14),w=W/B;x.fillStyle=(q>B*0.22&&q<B*0.78)?'#7fe7c1':'rgba(127,231,193,.35)';x.fillRect(q*w+2,H-hh,w-4,hh)}
 if(n<2400)requestAnimationFrame(f)}
 f()}
+
+function initCmp(c){var h=c.querySelector('.hdl'),drag=false,raf=0;
+function set(v){v=Math.max(2,Math.min(98,v));c.style.setProperty('--p',v+'%');h.setAttribute('aria-valuenow',Math.round(v));return v}
+function at(e){var r=c.getBoundingClientRect();return set((e.clientX-r.left)/r.width*100)}
+function stop(){cancelAnimationFrame(raf)}
+c.addEventListener('pointerdown',function(e){stop();drag=true;try{c.setPointerCapture(e.pointerId)}catch(x){}at(e)});
+c.addEventListener('pointermove',function(e){if(drag)at(e)});
+c.addEventListener('pointerup',function(){drag=false});c.addEventListener('pointercancel',function(){drag=false});
+h.addEventListener('keydown',function(e){var v=parseFloat(c.style.getPropertyValue('--p'))||50,k=e.key;
+if(k==='ArrowLeft'||k==='ArrowDown'){stop();set(v-5);e.preventDefault()}else if(k==='ArrowRight'||k==='ArrowUp'){stop();set(v+5);e.preventDefault()}else if(k==='Home'){stop();set(2);e.preventDefault()}else if(k==='End'){stop();set(98);e.preventDefault()}});
+var END=c.clientWidth<560?49:45;if(!reduce){var t0=performance.now();(function f(n){var k=Math.min(1,(n-t0)/1400),e=1-Math.pow(1-k,3);set(96-(96-END)*e);if(k<1)raf=requestAnimationFrame(f)})(t0)}else set(END)}
 function show(id,st){var s=D[id],h='<div class="sh"><strong>'+s.t+'</strong><button type="button" class="rp">Replay</button></div>';
 if(s.counts){h+='<div class="cn">';s.counts.forEach(function(c){h+='<div><b class="num" data-n="'+c.n+'" data-p="'+(c.pre||'')+'" data-s="'+(c.suf||'')+'">0</b><span>'+c.l+'</span></div>'});h+='</div>'}
 if(s.rows){s.rows.forEach(function(r){h+='<div class="rw"><em>'+r.l+'</em><div class="ft"><span class="fr">'+r.a+'</span><span class="ar">&#8594;</span><span class="to">'+r.b+'</span></div><div class="br"><b class="tg1">Before</b><div class="bt"><i data-w="'+r.wa+'%" style="--c:#ff6b57"></i></div><span>'+r.a+'</span></div><div class="br"><b class="tg2">After</b><div class="bt"><i data-w="'+r.wb+'%" style="--c:#7fe7c1"></i></div><span>'+r.b+'</span></div></div>'})}
-if(s.flow){h+='<div class="fl">';s.flow.forEach(function(f,i){h+=(i?'<u></u>':'')+'<span>'+f+'</span>'});h+='</div>'}
+if(s.slider){h+='<div class="cmp" style="--p:50%"><div class="cp bf"><div class="l"><span class="tag t1">Before</span><div class="big">5-7 days</div><div class="sub2">Manual, every cycle</div></div><div class="r"><ol class="stp"><li>Collect data by hand</li><li>Calculate in spreadsheets</li><li>Review and rework</li><li>Report out in 5-7 days</li></ol><div class="days"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="cp af"><div class="l"><span class="tag t2">After</span><div class="big">1 click</div><div class="sub2">Real time data</div><div class="gen">Generate report</div></div><div class="r"><ol class="stp"><li>Open the platform</li><li>4 source systems feed it</li><li>Add remarks, adjust values</li><li>Export</li></ol></div></div><div class="hdl" role="slider" tabindex="0" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><b></b></div></div><div class="mt">Drag the handle to compare. Illustrative view of the flow.</div>'}if(s.flow){h+='<div class="fl">';s.flow.forEach(function(f,i){h+=(i?'<u></u>':'')+'<span>'+f+'</span>'});h+='</div>'}
 if(s.monte){h+='<canvas class="mc" width="640" height="120"></canvas><div class="mt">Simulating thousands of payout outcomes per brand</div>'}
 st.innerHTML=h;
 st.querySelector('.rp').onclick=function(){show(id,st)};
-[].forEach.call(st.querySelectorAll('.num'),cnt);
+[].forEach.call(st.querySelectorAll('.num'),cnt);var cm=st.querySelector('.cmp');if(cm)initCmp(cm);
 [].forEach.call(st.querySelectorAll('.bt i'),function(b,i){setTimeout(function(){b.style.width=b.getAttribute('data-w')},reduce?0:300+i*350)});
 [].forEach.call(st.querySelectorAll('.fl span'),function(x,i){setTimeout(function(){x.classList.add('on')},reduce?0:400+i*600)});
 var cv=st.querySelector('.mc');if(cv)mc(cv)}
