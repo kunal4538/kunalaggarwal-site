@@ -470,6 +470,18 @@ function card(p){return '<a class="pc" href="https://www.linkedin.com/feed/updat
 var wall=d.getElementById('wall');
 [[0,5,''],[5,10,' rev']].forEach(function(r){var h=P.slice(r[0],r[1]).map(card).join('');wall.insertAdjacentHTML('beforeend','<div class="rowm'+r[2]+'">'+h+h+'</div>')});
 })();
+
+(function(){var buf='',busy=false,rd=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function toast(){var t=document.createElement('div');t.textContent='Shipped. Now go book a call.';t.setAttribute('role','status');t.style.cssText="position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:10000;background:#ffe14d;color:#150f20;font:800 15px 'Bricolage Grotesque',sans-serif;padding:10px 18px;border-radius:10px;box-shadow:0 4px 0 #b79f12;opacity:0;transition:opacity .25s";document.body.appendChild(t);requestAnimationFrame(function(){t.style.opacity='1'});setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove()},300)},2600)}
+function fire(){if(busy)return;busy=true;toast();if(rd){busy=false;return}
+var c=document.createElement('canvas'),x=c.getContext('2d'),w=c.width=innerWidth,h=c.height=innerHeight,dpr=1;c.setAttribute('aria-hidden','true');c.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999';document.body.appendChild(c);
+var col=['#ffe14d','#7fe7c1','#ff6b57','#ffc7dc','#c9d6f2','#f7f1e8'],ps=[],i;
+for(i=0;i<160;i++){var side=i%2?1:-1,a=-Math.PI/2+(Math.random()-.5)*1.1+side*.18,v=9+Math.random()*10;ps.push({x:w/2+side*w*.18,y:h+10,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:Math.random()*6.28,vr:(Math.random()-.5)*.35,s:6+Math.random()*7,k:col[i%col.length],sq:Math.random()<.5})}
+var t0=performance.now();
+(function f(n){x.clearRect(0,0,w,h);var alive=0;for(var j=0;j<ps.length;j++){var p=ps[j];p.vy+=.28;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(p.y<h+30){alive++;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.k;if(p.sq)x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);else{x.beginPath();x.arc(0,0,p.s/3,0,6.283);x.fill()}x.restore()}}
+if(alive&&n-t0<5000)requestAnimationFrame(f);else{c.remove();busy=false}})(t0)}
+document.addEventListener('keydown',function(e){if(e.ctrlKey||e.metaKey||e.altKey||!e.key||e.key.length!==1)return;var tg=e.target;if(tg&&(tg.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName)))return;buf=(buf+e.key.toLowerCase()).slice(-7);if(buf==='ship it'){buf='';fire()}});
+window.__shipit=fire})();
 </script>
 </body>
 </html>
