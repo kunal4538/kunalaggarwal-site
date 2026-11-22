@@ -140,6 +140,18 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .two{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
 @media(max-width:820px){.two{grid-template-columns:1fr}.ch{grid-template-columns:1fr auto auto}.ch .dt{grid-column:1;grid-row:2}.ch .pv{grid-row:3}.ch .tx{display:none}}
 @media print{.cb{grid-template-rows:1fr!important}.ci{opacity:1!important;transform:none!important}.ch .chev,.ch .tx,.ch .pv{display:none!important}.cs{break-inside:avoid}}
+
+.tl{position:relative;margin:18px 0 6px;padding:18px 18px 14px;border-radius:10px;background:#150f20;color:var(--paper)}
+.tl .st{position:absolute;top:-11px;left:14px;background:var(--y);color:var(--ink);font:800 13px 'Bricolage Grotesque',sans-serif;padding:3px 10px;border-radius:4px;transform:rotate(-3deg);box-shadow:0 3px 0 #b79f12}
+.tl .rp2{position:absolute;top:10px;right:12px;font:600 12px 'Bricolage Grotesque',sans-serif;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--paper);cursor:pointer}
+.tl h5{font-size:17px;font-weight:800;margin:4px 0 8px;letter-spacing:-.01em}
+.tl ul.tll{list-style:none;margin:0;padding:0}
+.tl ul.tll li{margin:4px 0;font-size:14px;line-height:1.45;color:#e4dcf0;opacity:0;transform:translateX(-12px);transition:opacity .45s,transform .45s}
+.tl ul.tll li.on{opacity:1;transform:none}.tl li b{color:var(--y)}
+.tl .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tl .chips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,255,255,.25);opacity:0;transform:scale(.92);transition:opacity .4s,transform .4s}
+.tl .chips span.on{opacity:1;transform:none}
+.tl .kr{margin-top:10px;font-size:13px;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -163,9 +175,19 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <div class="doc">
 <div class="hd"><h1>Kunal Aggarwal</h1>
 <div class="ct">New Delhi, India | <a href="mailto:kunal4538@gmail.com">kunal4538@gmail.com</a> | <a href="tel:+917838508333">+91 78385 08333</a> | <a href="https://www.linkedin.com/in/kunal4538/" target="_blank" rel="noopener">linkedin.com/in/kunal4538</a></div></div>
+<div class="tl" id="tl"><span class="st">TL;DR</span><button type="button" class="rp2" id="tlr">Replay</button>
+<h5>Too long, didn't read? Me in 10 seconds.</h5>
+<ul class="tll">
+<li><b>Trained as an engineer.</b> Fidelity: partner-facing REST APIs, 5 seconds faster, $248K saved.</li>
+<li><b>Sharpened as a consultant.</b> ZS: pharma incentive reporting, 100% on time, Monte Carlo on the side.</li>
+<li><b>Working as a product manager.</b> Gigmo and Amex: GenAI from 0 to 1, and a 5-7 day report turned into one click.</li>
+<li><b>Best at:</b> taking something slow, manual and Excel-shaped and turning it into a product people actually use.</li>
+</ul>
+<div class="chips"><span>0 to 1 AI products</span><span>Manual to automated</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span><span>IIM Nagpur MBA</span></div>
+<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div></div>
 <div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
-<section class="cs open"><button class="ch" type="button" aria-expanded="true"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Collapse</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
+<section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
 <p>Product manager who turns manual, data-heavy workflows in fintech, HR tech and customer support into products people rely on, on a path from software engineering (Fidelity) to consulting (ZS) to product (Gigmo, American Express). At Amex: a 10-feature MVP in 3 months that replaced a 5-7 day reporting cycle with a one-click real-time report, and an incentive platform scaled to 4 new APAC markets at 100% payout accuracy. At Gigmo: a GenAI support product taken from 0 to 1 with LLMs, vector search and RAG.</p>
 </div></div></section>
 
@@ -329,7 +351,11 @@ d.addEventListener('click',function(e){var b=e.target.closest('.ch');if(b)setOpe
 function all(o){[].forEach.call(d.querySelectorAll('.cs'),function(sc){setOpen(sc,o)})}
 d.getElementById('ea').onclick=function(){all(true)};d.getElementById('ca').onclick=function(){all(false)};
 addEventListener('beforeprint',function(){all(true)});
-var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!first.parentNode.querySelector('.stage'))toggle(first);io.disconnect()}},{threshold:1});io.observe(first);
+
+function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span'));items.forEach(function(e){e.classList.remove('on')});items.forEach(function(e,i){setTimeout(function(){e.classList.add('on')},reduce?0:250+i*320)})}
+d.getElementById('tlr').onclick=tl;
+var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
+var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect()}},{threshold:1});io.observe(first);
 var P=[['7376836235291643904','Present bias','Big Billion Days triggered déjà vu… and a DSLR I never needed.'],
 ['7383000330957021184','Ego bias','Being right doesn’t always mean you’ll win the argument.'],
 ['7467790431817232384','Planning fallacy','I once told my manager a feature would take “2 weeks, max.”'],
