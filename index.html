@@ -152,6 +152,17 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .tl .chips span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,255,255,.25);opacity:0;transform:scale(.92);transition:opacity .4s,transform .4s}
 .tl .chips span.on{opacity:1;transform:none}
 .tl .kr{margin-top:10px;font-size:13px;color:var(--muted)}
+
+.win{position:relative}
+.doc{overflow:hidden;transition:max-height 1s cubic-bezier(.2,.8,.2,1),filter .9s ease}
+.win.lock .doc{filter:blur(5px);pointer-events:none;user-select:none}
+.ov{position:absolute;left:0;right:0;top:52px;bottom:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(247,241,232,.28);transition:opacity .6s ease,transform .6s ease}
+.ov.gone{opacity:0;transform:scale(.97);pointer-events:none}
+.ov .tl{margin:0;width:100%;max-width:640px;box-shadow:0 30px 60px -18px rgba(0,0,0,.65);animation:popin .55s cubic-bezier(.2,.9,.25,1.15)}
+@keyframes popin{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
+.tl .act{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px}
+.tl .act .btn{padding:10px 18px;font-size:15px;box-shadow:0 5px 0 #b79f12}.tl .act span{font-size:12.5px;color:var(--muted)}
+@media print{.ov{display:none!important}.doc{max-height:none!important;filter:none!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -171,7 +182,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <section class="sec" id="cv"><div class="wrap">
 <h2>My CV, with the work shown.</h2>
 <p class="sub">Open a section, then tap a red button to watch what happened on that line.</p>
-<div class="win"><div class="wbar"><i></i><i></i><i></i><span class="fn">Kunal_Aggarwal_CV</span><span class="wb"><button type="button" id="ea">Expand all</button><button type="button" id="ca">Collapse all</button><button type="button" onclick="window.print()">Print or save PDF</button></span></div>
+<div class="win"><div class="wbar"><i></i><i></i><i></i><span class="fn">Kunal_Aggarwal_CV</span><span class="wb"><button type="button" id="tlb">TL;DR</button><button type="button" id="ea">Expand all</button><button type="button" id="ca">Collapse all</button><button type="button" onclick="window.print()">Print or save PDF</button></span></div>
 <div class="doc">
 <div class="hd"><h1>Kunal Aggarwal</h1>
 <div class="ct">New Delhi, India | <a href="mailto:kunal4538@gmail.com">kunal4538@gmail.com</a> | <a href="tel:+917838508333">+91 78385 08333</a> | <a href="https://www.linkedin.com/in/kunal4538/" target="_blank" rel="noopener">linkedin.com/in/kunal4538</a></div></div>
@@ -184,7 +195,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <li><b>Best at:</b> taking something slow, manual and Excel-shaped and turning it into a product people actually use.</li>
 </ul>
 <div class="chips"><span>0 to 1 AI products</span><span>Manual to automated</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span><span>IIM Nagpur MBA</span></div>
-<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div></div>
+<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="act"><button type="button" class="btn" id="unb">Unblur the full CV</button><span>Collapsible, with live demos of the work.</span></div></div>
 <div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
 <section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
@@ -355,6 +366,15 @@ addEventListener('beforeprint',function(){all(true)});
 function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span'));items.forEach(function(e){e.classList.remove('on')});items.forEach(function(e,i){setTimeout(function(){e.classList.add('on')},reduce?0:250+i*320)})}
 d.getElementById('tlr').onclick=tl;
 var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
+
+var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=540,hid;
+ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(card);
+function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
+function unlockCv(){win.classList.remove('lock');doc.removeAttribute('inert');ov.classList.add('gone');doc.style.maxHeight=doc.scrollHeight+'px';hid=setTimeout(function(){doc.style.maxHeight='none';ov.hidden=true},reduce?50:1050)}
+win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');
+d.getElementById('unb').onclick=unlockCv;d.getElementById('tlb').onclick=lockCv;
+d.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('lock'))unlockCv()});
+addEventListener('beforeprint',function(){win.classList.remove('lock');doc.removeAttribute('inert');doc.style.maxHeight='none'});
 var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect()}},{threshold:1});io.observe(first);
 var P=[['7376836235291643904','Present bias','Big Billion Days triggered déjà vu… and a DSLR I never needed.'],
 ['7383000330957021184','Ego bias','Being right doesn’t always mean you’ll win the argument.'],
