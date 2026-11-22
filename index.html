@@ -165,6 +165,22 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 @media print{.ov{display:none!important}.doc{max-height:none!important;filter:none!important}}
 
 .ov{overflow:auto}.ov .tl{margin:auto}
+
+.tlz{margin:14px 0 4px}.tlz .tzh{font-size:12.5px;color:#6b6176;margin-bottom:6px}
+.tlz .trk{position:relative;height:46px;border-radius:8px;background:repeating-linear-gradient(135deg,#ede4d3 0 6px,#e6dbc8 6px 12px)}
+.tlz .gap{position:absolute;left:28.57%;width:24.18%;top:0;line-height:46px;text-align:center;font-size:11.5px;color:#6b6176;pointer-events:none}
+.tlz .trk button{position:absolute;top:0;height:46px;box-sizing:border-box;border:2px solid #f7f1e8;border-radius:8px;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 2px;overflow:hidden;box-shadow:0 3px 0 rgba(26,20,36,.22);transition:transform .2s,filter .2s}
+.tlz .trk button:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.tlz .trk b{font-size:13px;line-height:1.1}.tlz .trk i{font-style:normal;font-size:10.5px;line-height:1.2;opacity:.75;white-space:nowrap}
+.tlz .yrs{position:relative;height:16px;margin-top:8px}.tlz .yrs span{position:absolute;transform:translateX(-50%);font-size:11px;color:#6b6176}
+.ch.flash{animation:flsh 1.6s ease-out}@keyframes flsh{0%,50%{background:rgba(255,225,77,.75)}100%{background:rgba(255,225,77,0)}}
+.fb{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0 2px;padding:8px 12px;border-radius:8px;background:#fff0a6;font-size:13px}.fb[hidden]{display:none}
+.fb button{font:700 12.5px 'Bricolage Grotesque',sans-serif;padding:4px 10px;border-radius:99px;border:1px solid #c9bda6;background:#f7f1e8;color:var(--ink);cursor:pointer}
+.doc li[data-t]{transition:opacity .4s,background .4s}
+.doc.fit li{opacity:.3}.doc.fit li.hl{opacity:1;background:rgba(255,225,77,.35);border-radius:6px;box-shadow:-6px 0 0 rgba(255,225,77,.35),6px 0 0 rgba(255,225,77,.35)}
+.tl .hf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}.tl .hf span{font-size:13px;color:var(--muted)}
+.tl .hf button{font:700 13px 'Bricolage Grotesque',sans-serif;padding:6px 12px;border-radius:99px;border:1.5px solid var(--y);background:transparent;color:var(--y);cursor:pointer;transition:background .2s,color .2s}.tl .hf button:hover{background:var(--y);color:var(--ink)}
+@media(max-width:560px){.tlz .trk i{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -197,9 +213,16 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <li><b>Best at:</b> taking something slow, manual and Excel-shaped and turning it into a product people actually use.</li>
 </ul>
 <div class="chips"><span>AI agents</span><span>0 to 1 AI products</span><span>RAG and guardrails</span><span>Workflow automation</span><span>Enterprise-ready (PII, RBAC)</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span></div>
-<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="act"><button type="button" class="btn" id="unb">Interesting enough?</button><button type="button" class="sm" id="unb2">See the CV</button></div></div>
+<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="hf"><span>Hiring for...</span><button type="button" data-f="ai">AI PM</button><button type="button" data-f="fin">Fintech PM</button><button type="button" data-f="data">Data and Consulting</button></div><div class="act"><button type="button" class="btn" id="unb">Interesting enough?</button><button type="button" class="sm" id="unb2">See the CV</button></div></div>
 <div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
+<div class="tlz"><div class="tzh">Career at a glance. Click a block to jump to that role.</div><div class="trk"><span class="gap">MBA, IIM Nagpur</span>
+<button type="button" data-r="3" style="left:0;width:28.57%;background:#cfd8ea" aria-label="Fidelity International"><b>Fidelity</b><i>May '19 - Jul '21</i></button>
+<button type="button" data-r="2" style="left:52.75%;width:8.79%;background:#b9ecd6" aria-label="Gigmo Solutions"><b>Gigmo</b><i>'23 - '24</i></button>
+<button type="button" data-r="1" style="left:63.74%;width:17.58%;background:#ffc9de" aria-label="ZS Associates"><b>ZS</b><i>Mar '24 - Jul '25</i></button>
+<button type="button" data-r="0" style="left:81.32%;width:18.68%;background:#ffe14d" aria-label="American Express"><b>Amex</b><i>Jul '25 - now</i></button></div>
+<div class="yrs"><span style="left:8.79%">2020</span><span style="left:35.16%">2022</span><span style="left:61.54%">2024</span><span style="left:87.91%">2026</span></div></div>
+<div class="fb" id="fb" hidden><span></span><button type="button" id="fbx">Show everything</button></div>
 <section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
 <p>Product manager who turns manual, data-heavy workflows in fintech, HR tech and customer support into products people rely on, on a path from software engineering (Fidelity) to consulting (ZS) to product (Gigmo, American Express). At Amex: a 10-feature MVP in 3 months that replaced a 5-7 day reporting cycle with a one-click real-time report, and an incentive platform scaled to 4 new APAC markets at 100% payout accuracy. At Gigmo: a GenAI support product taken from 0 to 1 with LLMs, vector search and RAG.</p>
 </div></div></section>
@@ -369,8 +392,8 @@ function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span
 
 var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
 
-var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=600,hid;
-ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(card);
+var win=d.querySelector('.win'),doc=win.querySelector('.doc'),tlc=d.getElementById('tl'),ov=d.createElement('div'),LK=600,hid;
+ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(tlc);
 function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
 function unlockCv(){win.classList.remove('lock');doc.removeAttribute('inert');ov.classList.add('gone');doc.style.maxHeight=doc.scrollHeight+'px';hid=setTimeout(function(){doc.style.maxHeight='none';ov.hidden=true},reduce?50:1050)}
 win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');
@@ -378,6 +401,23 @@ d.getElementById('unb').onclick=unlockCv;d.getElementById('unb2').onclick=unlock
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('lock'))unlockCv()});
 addEventListener('beforeprint',function(){win.classList.remove('lock');doc.removeAttribute('inert');doc.style.maxHeight='none'});
 
+
+var FIT={ai:'AI PM',fin:'Fintech PM',data:'Data and Consulting'},fb=d.getElementById('fb'),EXP=null;
+[].forEach.call(d.querySelectorAll('.cs>.ch .tt'),function(t){if(t.textContent==='Professional experience')EXP=t.closest('.cs')});
+var TAGS=[['Launched a 10-feature','fin data'],['Turned a 5-7 day','fin data'],['Secured Compliance','fin data'],['As APAC Product Owner','fin'],['Shipped 20 features','fin'],['Cut approval-deck','ai'],['Cut validation time','data'],['Delivered 100% on-time','data'],['Modelled incentive','data fin'],['Led post-merger','data'],['Built a GenAI','ai'],['Lifted tickets','ai'],['Added relevance','ai'],['A/B tested','data'],['As Product Owner of an HR CRM','fin'],['Cut API response','fin'],['Delivered $248K','fin']];
+[].forEach.call(d.querySelectorAll('.doc li'),function(li){var t=li.textContent.trim();TAGS.forEach(function(g){if(t.indexOf(g[0])===0)li.setAttribute('data-t',g[1])})});
+function clearFit(){doc.classList.remove('fit');[].forEach.call(d.querySelectorAll('.doc li.hl'),function(l){l.classList.remove('hl')});fb.hidden=true}
+function applyFit(k){clearFit();doc.classList.add('fit');
+[].forEach.call(d.querySelectorAll('.doc li[data-t]'),function(li){if((' '+li.getAttribute('data-t')+' ').indexOf(' '+k+' ')>-1)li.classList.add('hl')});
+if(EXP)setOpen(EXP,true);
+[].forEach.call(d.querySelectorAll('.role'),function(r){setOpen(r,!!r.querySelector('li.hl'))});
+fb.querySelector('span').textContent='Showing the '+FIT[k]+' view. Highlighted lines are the closest match.';fb.hidden=false;
+var was=win.classList.contains('lock');if(was)unlockCv();
+setTimeout(function(){scrollTo({top:fb.getBoundingClientRect().top+scrollY-90,behavior:'smooth'})},was?(reduce?100:1150):300)}
+[].forEach.call(d.querySelectorAll('#tl .hf button'),function(b){b.onclick=function(){applyFit(b.getAttribute('data-f'))}});
+d.getElementById('fbx').onclick=clearFit;
+[].forEach.call(d.querySelectorAll('.tlz [data-r]'),function(b){b.onclick=function(){var r=d.querySelectorAll('.role')[+b.getAttribute('data-r')],was=win.classList.contains('lock');if(was)unlockCv();if(EXP)setOpen(EXP,true);setOpen(r,true);
+setTimeout(function(){var h=r.querySelector(':scope>.ch');scrollTo({top:h.getBoundingClientRect().top+scrollY-100,behavior:'smooth'});h.classList.remove('flash');void h.offsetWidth;h.classList.add('flash')},was?(reduce?100:1150):350)}});
 var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect()}},{threshold:1});io.observe(first);
 var P=[['7376836235291643904','Present bias','Big Billion Days triggered déjà vu… and a DSLR I never needed.'],
 ['7383000330957021184','Ego bias','Being right doesn’t always mean you’ll win the argument.'],
