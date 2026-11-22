@@ -163,6 +163,11 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .tl .act{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:14px}.tl .sm{background:none;border:0;padding:0;color:var(--muted);font:600 12.5px "Bricolage Grotesque",sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.tl .sm:hover{color:var(--paper)}
 .tl .act .btn{padding:10px 18px;font-size:15px;box-shadow:0 5px 0 #b79f12}.tl .act span{font-size:12.5px;color:var(--muted)}
 @media print{.ov{display:none!important}.doc{max-height:none!important;filter:none!important}}
+
+.tl ul.tll li{padding:3px 8px;border-radius:6px;cursor:help;transition:opacity .45s,transform .45s,background .2s}
+.tl ul.tll li.hv,.tl ul.tll li:focus-visible{background:rgba(255,255,255,.08)}
+.tl .ib{margin-top:12px;min-height:5.6em;padding:9px 12px;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:rgba(255,225,77,.09);font-size:13px;line-height:1.5;color:#e4dcf0}
+.ov{overflow:auto}.ov .tl{margin:auto}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -195,7 +200,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <li><b>Best at:</b> taking something slow, manual and Excel-shaped and turning it into a product people actually use.</li>
 </ul>
 <div class="chips"><span>AI agents</span><span>0 to 1 AI products</span><span>RAG and guardrails</span><span>Workflow automation</span><span>Enterprise-ready (PII, RBAC)</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span></div>
-<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="act"><button type="button" class="btn" id="unb">Interesting enough?</button><button type="button" class="sm" id="unb2">See the CV</button></div></div>
+<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="ib" id="ib">Hover or tap a line for the full story.</div><div class="act"><button type="button" class="btn" id="unb">Interesting enough?</button><button type="button" class="sm" id="unb2">See the CV</button></div></div>
 <div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
 <section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
@@ -367,7 +372,7 @@ function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span
 
 var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
 
-var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=600,hid;
+var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=700,hid;
 ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(card);
 function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
 function unlockCv(){win.classList.remove('lock');doc.removeAttribute('inert');ov.classList.add('gone');doc.style.maxHeight=doc.scrollHeight+'px';hid=setTimeout(function(){doc.style.maxHeight='none';ov.hidden=true},reduce?50:1050)}
@@ -375,6 +380,13 @@ win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','
 d.getElementById('unb').onclick=unlockCv;d.getElementById('unb2').onclick=unlockCv;d.getElementById('tlb').onclick=lockCv;
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('lock'))unlockCv()});
 addEventListener('beforeprint',function(){win.classList.remove('lock');doc.removeAttribute('inert');doc.style.maxHeight='none'});
+
+var INFO=["Fidelity International, May '19 to Jul '21. Redesigned partner-facing APIs for two financial and asset-management REST services, cutting response time by about 5 seconds. Lifted environment stability from 20% to 90% and delivered $248K in cost savings.","ZS Associates, Mar '24 to Jul '25. Delivered 100% on-time incentive compensation reporting for a global pharma client across 4 business units and 1,000+ field reps, led a team of 4, built a validation tool that cut validation time 60%, and modelled payouts with Monte Carlo simulation across 10+ brands a quarter.","Gigmo: took a GenAI support product from 0 to 1, with up to 50% more tickets resolved across 100+ agents, plus a RAG chatbot. Amex: a 10-feature MVP in 3 months, a 5-7 day report turned into one click, and a GPT/Copilot tool that cut approval decks from 3-4 weeks to 1 week.","Gigmo: input and output relevance guardrails and a thumbs up/down loop that reweights results. Amex: Compliance sign-off for payroll and PII data, role-based access (view, edit, support), a full audit trail and beta testing, with zero incidents since launch.","The pattern in every role: a slow, manual process (Excel incentive plans, 5-7 day reports, hours of manual validation) turned into a product people adopt. Example: APAC adoption up 200% and plan queries down from 60-70 to single digits per market."];
+var ib=d.getElementById('ib'),DEF='Hover or tap a line for the full story.';
+[].forEach.call(d.querySelectorAll('#tl ul.tll li'),function(li,i){li.tabIndex=0;
+function on(){[].forEach.call(d.querySelectorAll('#tl li.hv'),function(x){x.classList.remove('hv')});li.classList.add('hv');ib.textContent=INFO[i]}
+function off(){li.classList.remove('hv');ib.textContent=DEF}
+li.addEventListener('mouseenter',on);li.addEventListener('focus',on);li.addEventListener('click',on);li.addEventListener('mouseleave',off);li.addEventListener('blur',off)});
 var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect()}},{threshold:1});io.observe(first);
 var P=[['7376836235291643904','Present bias','Big Billion Days triggered déjà vu… and a DSLR I never needed.'],
 ['7383000330957021184','Ego bias','Being right doesn’t always mean you’ll win the argument.'],
