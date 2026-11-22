@@ -207,6 +207,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .hdl b::before,.hdl b::after{content:"";position:absolute;top:50%;margin-top:-6px;border:6px solid transparent}
 .hdl b::before{left:3px;border-right-color:var(--ink)}.hdl b::after{right:3px;border-left-color:var(--ink)}
 @media(max-width:560px){.cmp{height:270px}.cp{grid-template-columns:1fr 1fr;padding:14px}.cmp .stp{margin-left:14px}}
+@media(max-width:560px){.wbar{flex-wrap:wrap;gap:6px 8px;padding:10px 12px}.wbar .fn,.wbar i{display:none}.wbar .wb{display:flex;flex-wrap:wrap;gap:6px;margin-left:0;width:100%}.wbar .wb button,.wbar .wb .dl{margin-left:0;font-size:12px;padding:5px 9px}.tl .chips{gap:5px;margin-top:8px}.tl .chips span{font-size:11.5px;padding:2px 8px}.ov{padding:10px}.tl{padding:16px 14px 12px}.kp{grid-template-columns:1fr 1fr}.kp div{padding:7px 10px}.kp b{font-size:15px}.kp span{font-size:11.5px}.tlz .trk button{padding:0;overflow:hidden}.tlz .trk b{font-size:10px}.tlz .trk i{display:none}.tlz .gap{font-size:9px;white-space:nowrap;overflow:hidden}.cmp .big{font-size:26px}.cp.bf .l{padding-right:24px}.cp.af .l{padding-left:26px;padding-right:2px}.cmp .gen{font-size:11.5px;padding:6px 9px;white-space:normal;text-align:center;line-height:1.2}.cmp .sub2{font-size:11.5px}.cmp .stp{font-size:12px}.cmp .stp li{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -427,13 +428,13 @@ addEventListener('beforeprint',function(){all(true)});
 
 function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span'));items.forEach(function(e){e.classList.remove('on')});items.forEach(function(e,i){setTimeout(function(){e.classList.add('on')},reduce?0:250+i*320)})}
 
-var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
+var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.12});tio.observe(d.getElementById('tl'));
 
 var win=d.querySelector('.win'),doc=win.querySelector('.doc'),tlc=d.getElementById('tl'),ov=d.createElement('div'),LK=600,hid;
-ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(tlc);
-function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
+ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(tlc);var wbr=win.querySelector('.wbar');function fitOv(){ov.style.top=wbr.offsetHeight+'px'}fitOv();addEventListener('resize',fitOv);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitOv);
+function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;LK=Math.max(600,tlc.offsetHeight+28);win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
 function unlockCv(){win.classList.remove('lock');doc.removeAttribute('inert');ov.classList.add('gone');doc.style.maxHeight=doc.scrollHeight+'px';hid=setTimeout(function(){doc.style.maxHeight='none';ov.hidden=true},reduce?50:1050)}
-win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');
+LK=Math.max(600,tlc.offsetHeight+28);win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');
 d.getElementById('unb').onclick=unlockCv;d.getElementById('unb2').onclick=unlockCv;d.getElementById('tlb').onclick=lockCv;
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('lock'))unlockCv()});
 addEventListener('beforeprint',function(){win.classList.remove('lock');doc.removeAttribute('inert');doc.style.maxHeight='none'});
