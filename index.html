@@ -160,7 +160,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .ov.gone{opacity:0;transform:scale(.97);pointer-events:none}
 .ov .tl{margin:0;width:100%;max-width:640px;box-shadow:0 30px 60px -18px rgba(0,0,0,.65);animation:popin .55s cubic-bezier(.2,.9,.25,1.15)}
 @keyframes popin{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
-.tl .act{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px}
+.tl .act{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:14px}.tl .sm{background:none;border:0;padding:0;color:var(--muted);font:600 12.5px "Bricolage Grotesque",sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.tl .sm:hover{color:var(--paper)}
 .tl .act .btn{padding:10px 18px;font-size:15px;box-shadow:0 5px 0 #b79f12}.tl .act span{font-size:12.5px;color:var(--muted)}
 @media print{.ov{display:none!important}.doc{max-height:none!important;filter:none!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
@@ -186,16 +186,16 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 <div class="doc">
 <div class="hd"><h1>Kunal Aggarwal</h1>
 <div class="ct">New Delhi, India | <a href="mailto:kunal4538@gmail.com">kunal4538@gmail.com</a> | <a href="tel:+917838508333">+91 78385 08333</a> | <a href="https://www.linkedin.com/in/kunal4538/" target="_blank" rel="noopener">linkedin.com/in/kunal4538</a></div></div>
-<div class="tl" id="tl"><span class="st">TL;DR</span><button type="button" class="rp2" id="tlr">Replay</button>
-<h5>Too long, didn't read? Me in 10 seconds.</h5>
+<div class="tl" id="tl"><span class="st">TL;DR</span><h5>Too long, didn't read? Me in 10 seconds.</h5>
 <ul class="tll">
 <li><b>Trained as an engineer.</b> Fidelity: partner-facing REST APIs, 5 seconds faster, $248K saved.</li>
-<li><b>Sharpened as a consultant.</b> ZS: pharma incentive reporting, 100% on time, Monte Carlo on the side.</li>
-<li><b>Working as a product manager.</b> Gigmo and Amex: GenAI from 0 to 1, and a 5-7 day report turned into one click.</li>
+<li><b>Sharpened as a consultant.</b> ZS: pharma incentive reporting, 100% on time, Monte Carlo payout modelling.</li>
+<li><b>Working as a product manager.</b> Gigmo and Amex: GenAI from 0 to 1, AI agents, and a 5-7 day report turned into one click.</li>
+<li><b>Built to be trusted.</b> RAG, guardrails, feedback loops, and Compliance sign-off on payroll and PII data.</li>
 <li><b>Best at:</b> taking something slow, manual and Excel-shaped and turning it into a product people actually use.</li>
 </ul>
-<div class="chips"><span>0 to 1 AI products</span><span>Manual to automated</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span><span>IIM Nagpur MBA</span></div>
-<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="act"><button type="button" class="btn" id="unb">Unblur the full CV</button><span>Collapsible, with live demos of the work.</span></div></div>
+<div class="chips"><span>AI agents</span><span>0 to 1 AI products</span><span>RAG and guardrails</span><span>Workflow automation</span><span>Enterprise-ready (PII, RBAC)</span><span>Talks to engineers and VPs</span><span>Numbers or it didn't happen</span><span>PMI-ACP</span></div>
+<div class="kr">Kryptonite: a 5-7 day report that could have been one click.</div><div class="act"><button type="button" class="btn" id="unb">Interesting enough?</button><button type="button" class="sm" id="unb2">See the CV</button></div></div>
 <div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
 <section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
@@ -364,15 +364,15 @@ d.getElementById('ea').onclick=function(){all(true)};d.getElementById('ca').oncl
 addEventListener('beforeprint',function(){all(true)});
 
 function tl(){var items=[].slice.call(d.querySelectorAll('#tl li,#tl .chips span'));items.forEach(function(e){e.classList.remove('on')});items.forEach(function(e,i){setTimeout(function(){e.classList.add('on')},reduce?0:250+i*320)})}
-d.getElementById('tlr').onclick=tl;
+
 var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl();tio.disconnect()}},{threshold:.6});tio.observe(d.getElementById('tl'));
 
-var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=540,hid;
+var win=d.querySelector('.win'),doc=win.querySelector('.doc'),card=d.getElementById('tl'),ov=d.createElement('div'),LK=600,hid;
 ov.className='ov';ov.id='ov';win.appendChild(ov);ov.appendChild(card);
 function lockCv(){clearTimeout(hid);ov.hidden=false;doc.style.maxHeight=doc.scrollHeight+'px';void doc.offsetHeight;win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');void ov.offsetHeight;ov.classList.remove('gone');tl()}
 function unlockCv(){win.classList.remove('lock');doc.removeAttribute('inert');ov.classList.add('gone');doc.style.maxHeight=doc.scrollHeight+'px';hid=setTimeout(function(){doc.style.maxHeight='none';ov.hidden=true},reduce?50:1050)}
 win.classList.add('lock');doc.style.maxHeight=LK+'px';doc.setAttribute('inert','');
-d.getElementById('unb').onclick=unlockCv;d.getElementById('tlb').onclick=lockCv;
+d.getElementById('unb').onclick=unlockCv;d.getElementById('unb2').onclick=unlockCv;d.getElementById('tlb').onclick=lockCv;
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('lock'))unlockCv()});
 addEventListener('beforeprint',function(){win.classList.remove('lock');doc.removeAttribute('inert');doc.style.maxHeight='none'});
 var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect()}},{threshold:1});io.observe(first);
