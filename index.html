@@ -181,6 +181,13 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 .tl .hf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}.tl .hf span{font-size:13px;color:var(--muted)}
 .tl .hf button{font:700 13px 'Bricolage Grotesque',sans-serif;padding:6px 12px;border-radius:99px;border:1.5px solid var(--y);background:transparent;color:var(--y);cursor:pointer;transition:background .2s,color .2s}.tl .hf button:hover{background:var(--y);color:var(--ink)}
 @media(max-width:560px){.tlz .trk i{display:none}}
+
+.ft{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:4px 0 8px}
+.ft .fr{font-size:clamp(18px,3vw,24px);font-weight:800;color:#ff8a78}.ft .ar{font-size:22px;color:var(--muted)}.ft .to{font-size:clamp(18px,3vw,24px);font-weight:800;color:var(--m)}
+.ft .ar,.ft .to{animation:fin .5s both}.ft .ar{animation-delay:.5s}.ft .to{animation-delay:.9s}
+@keyframes fin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.br b{flex:none;width:54px;text-align:center;font-size:11.5px;font-weight:700;padding:2px 0;border-radius:4px}
+.br .tg1{background:rgba(255,107,87,.2);color:#ff8a78}.br .tg2{background:rgba(127,231,193,.2);color:var(--m)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -218,7 +225,7 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 
 <div class="tlz"><div class="tzh">Career at a glance. Click a block to jump to that role.</div><div class="trk"><span class="gap">MBA, IIM Nagpur</span>
 <button type="button" data-r="3" style="left:0;width:28.57%;background:#cfd8ea" aria-label="Fidelity International"><b>Fidelity</b><i>May '19 - Jul '21</i></button>
-<button type="button" data-r="2" style="left:52.75%;width:8.79%;background:#b9ecd6" aria-label="Gigmo Solutions"><b>Gigmo</b><i>'23 - '24</i></button>
+<button type="button" data-r="2" style="left:52.75%;width:10.99%;background:#b9ecd6" aria-label="Gigmo Solutions"><b>Gigmo</b><i>'23 - '24</i></button>
 <button type="button" data-r="1" style="left:63.74%;width:17.58%;background:#ffc9de" aria-label="ZS Associates"><b>ZS</b><i>Mar '24 - Jul '25</i></button>
 <button type="button" data-r="0" style="left:81.32%;width:18.68%;background:#ffe14d" aria-label="American Express"><b>Amex</b><i>Jul '25 - now</i></button></div>
 <div class="yrs"><span style="left:8.79%">2020</span><span style="left:35.16%">2022</span><span style="left:61.54%">2024</span><span style="left:87.91%">2026</span></div></div>
@@ -343,7 +350,7 @@ a1:{t:'A 5-7 day report becomes one click',counts:[{n:10,suf:' features',l:'in t
 a2:{t:'APAC incentive platform',counts:[{n:200,pre:'+',suf:'%',l:'adoption across APAC'},{n:600,pre:'~',l:'colleagues off Excel'}],rows:[{l:'Plan queries per market',a:'60-70',b:'single digits',wa:100,wb:12}]},
 a3:{t:'Incentive platform rollout',counts:[{n:20,l:'features shipped'},{n:4,l:'new markets onboarded'},{n:100,suf:'%',l:'payout accuracy'}]},
 a4:{t:'GPT/Copilot deck tool',rows:[{l:'Approval deck creation',a:'3-4 weeks',b:'1 week',wa:100,wb:29},{l:'Review rounds',a:'10-12',b:'4-5',wa:100,wb:41}]},
-z1:{t:'Data validation tool',counts:[{n:60,suf:'%',l:'less validation time'},{n:156,pre:'~',suf:' hrs',l:'saved a year'},{n:40,suf:'%',l:'more efficient'}],rows:[{l:'Validation time',a:'Before',b:'After',wa:100,wb:40}]},
+z1:{t:'Data validation tool',counts:[{n:60,suf:'%',l:'less validation time'},{n:156,pre:'~',suf:' hrs',l:'saved a year'},{n:40,suf:'%',l:'more efficient'}],rows:[{l:'Validation time',a:'Baseline',b:'60% less',wa:100,wb:40}]},
 z2:{t:'Monte Carlo payout modeling',counts:[{n:10,suf:'+',l:'brands a quarter'}],monte:true},
 z3:{t:'On-time incentive reporting',counts:[{n:100,suf:'%',l:'on time'},{n:1000,suf:'+',l:'field reps'},{n:4,l:'business units'}]},
 g1:{t:'Ticket resolution engine',counts:[{n:50,pre:'up to ',suf:'%',l:'more tickets resolved a month'},{n:100,suf:'+',l:'agents'}],flow:['New ticket','Vector search over resolved tickets','10 closest matches','Rerank on ticket text','Top 3 past solutions']},
@@ -366,7 +373,7 @@ if(n<2400)requestAnimationFrame(f)}
 f()}
 function show(id,st){var s=D[id],h='<div class="sh"><strong>'+s.t+'</strong><button type="button" class="rp">Replay</button></div>';
 if(s.counts){h+='<div class="cn">';s.counts.forEach(function(c){h+='<div><b class="num" data-n="'+c.n+'" data-p="'+(c.pre||'')+'" data-s="'+(c.suf||'')+'">0</b><span>'+c.l+'</span></div>'});h+='</div>'}
-if(s.rows){s.rows.forEach(function(r){h+='<div class="rw"><em>'+r.l+'</em><div class="br"><div class="bt"><i data-w="'+r.wa+'%" style="--c:#ff6b57"></i></div><span>'+r.a+'</span></div><div class="br"><div class="bt"><i data-w="'+r.wb+'%" style="--c:#7fe7c1"></i></div><span>'+r.b+'</span></div></div>'})}
+if(s.rows){s.rows.forEach(function(r){h+='<div class="rw"><em>'+r.l+'</em><div class="ft"><span class="fr">'+r.a+'</span><span class="ar">&#8594;</span><span class="to">'+r.b+'</span></div><div class="br"><b class="tg1">Before</b><div class="bt"><i data-w="'+r.wa+'%" style="--c:#ff6b57"></i></div><span>'+r.a+'</span></div><div class="br"><b class="tg2">After</b><div class="bt"><i data-w="'+r.wb+'%" style="--c:#7fe7c1"></i></div><span>'+r.b+'</span></div></div>'})}
 if(s.flow){h+='<div class="fl">';s.flow.forEach(function(f,i){h+=(i?'<u></u>':'')+'<span>'+f+'</span>'});h+='</div>'}
 if(s.monte){h+='<canvas class="mc" width="640" height="120"></canvas><div class="mt">Simulating thousands of payout outcomes per brand</div>'}
 st.innerHTML=h;
