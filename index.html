@@ -110,6 +110,36 @@ h2{font-size:clamp(34px,5.4vw,68px);line-height:1;letter-spacing:-.035em;font-we
 .pc small{font-size:13px;font-weight:600;color:#5b5166}
 .mega{font-size:clamp(64px,15vw,210px);line-height:.86;letter-spacing:-.05em;font-weight:800;margin-bottom:30px}
 footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-size:14px}
+
+#cv.sec{padding:70px 0}#cv .sub{margin-bottom:22px}
+.wbar .wb{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}.wbar .wb button{margin-left:0;padding:5px 10px}
+.doc{padding:clamp(14px,2.2vw,26px)}
+.doc .hd{display:flex;justify-content:space-between;align-items:baseline;gap:6px 20px;flex-wrap:wrap}
+.doc h1{font-size:clamp(26px,3vw,34px)}
+.doc .ct{margin:0;font-size:13.5px}.doc .ct a{color:#1a4fb8;text-decoration:underline;text-underline-offset:2px}.doc .ct a:hover{color:#e8433a}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0 4px}
+.kp div{background:#ede4d3;border-radius:8px;padding:8px 12px}.kp b{display:block;font-size:17px;line-height:1.15;letter-spacing:-.01em}.kp span{font-size:12px;color:#6b6176;line-height:1.3;display:block}
+.cs{border-top:2px solid var(--ink);margin-top:12px}
+.cs .cs{border-top:1px solid #d6cbb7;margin-top:0}
+.ch{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:1px 10px;width:100%;padding:9px 4px;background:none;border:0;color:var(--ink);font-family:inherit;text-align:left;cursor:pointer;border-radius:6px;transition:background .2s}
+.ch:hover,.ch:focus-visible{background:rgba(26,20,36,.06)}
+.ch .tt{font-weight:800;font-size:16.5px;letter-spacing:-.01em}.role>.ch .tt{font-size:14.5px}
+.ch .dt{font-size:12.5px;color:#6b6176}.ch .tx{font-size:12px;font-weight:700;color:#6b6176;min-width:56px;text-align:right}
+.ch .pv{grid-column:1/-1;font-size:12.5px;color:#6b6176;display:none}.cs:not(.open)>.ch .pv{display:block}
+.chev{width:26px;height:26px;border-radius:50%;background:var(--y);position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s}
+.chev::before{content:"";position:absolute;left:8px;top:6px;width:7px;height:7px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)}
+.cs.open>.ch .chev{transform:rotate(180deg);background:#e0d6c3}
+.cs:not(.open)>.ch .chev{animation:pulseY 2.6s infinite}
+@keyframes pulseY{0%{box-shadow:0 0 0 0 rgba(255,200,0,.75)}70%,100%{box-shadow:0 0 0 9px rgba(255,200,0,0)}}
+.cb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.cs.open>.cb{grid-template-rows:1fr}
+.ci{overflow:hidden;min-height:0;opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.cs.open>.cb>.ci{opacity:1;transform:none;transition-delay:.06s}
+.ci>ul,.ci>p{margin-top:2px}.role>.cb>.ci{padding:0 4px 8px}.cs>.cb>.ci{padding:0 4px 8px}
+.doc p,.doc li{font-size:14px;line-height:1.45}.doc li{margin:5px 0}.doc ul{margin:4px 0 0 18px}.doc p{margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media(max-width:820px){.two{grid-template-columns:1fr}.ch{grid-template-columns:1fr auto auto}.ch .dt{grid-column:1;grid-row:2}.ch .pv{grid-row:3}.ch .tx{display:none}}
+@media print{.cb{grid-template-rows:1fr!important}.ci{opacity:1!important;transform:none!important}.ch .chev,.ch .tx,.ch .pv{display:none!important}.cs{break-inside:avoid}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.wall{overflow-x:auto}}
 @media print{body{background:#fff}#bg,.shade,.grain,.bar,.top,.hero,#work,#writing,#contact,footer,.wbar,.pl,.stage,.sub,#cv h2{display:none!important}.sec{padding:0}.win{box-shadow:none;border-radius:0}.doc{padding:0}}
 </style>
@@ -128,72 +158,72 @@ footer{position:relative;z-index:2;padding:30px 0 50px;color:var(--muted);font-s
 
 <section class="sec" id="cv"><div class="wrap">
 <h2>My CV, with the work shown.</h2>
-<p class="sub">Tap a red button to watch what happened on that line.</p>
-<div class="win"><div class="wbar"><i></i><i></i><i></i><span class="fn">Kunal_Aggarwal_CV</span><button type="button" onclick="window.print()">Print or save as PDF</button></div>
+<p class="sub">Open a section, then tap a red button to watch what happened on that line.</p>
+<div class="win"><div class="wbar"><i></i><i></i><i></i><span class="fn">Kunal_Aggarwal_CV</span><span class="wb"><button type="button" id="ea">Expand all</button><button type="button" id="ca">Collapse all</button><button type="button" onclick="window.print()">Print or save PDF</button></span></div>
 <div class="doc">
-<h1>Kunal Aggarwal</h1>
-<div class="ct">New Delhi, India | linkedin.com/in/kunal4538</div>
-<h4>Profile summary</h4>
-<p>Product manager with 5+ years turning manual, data heavy workflows in fintech, HR tech and customer support into products people rely on, built on a path from software engineering (Fidelity International) to management consulting (ZS Associates) to product management (Gigmo Solutions, American Express). At Amex, launched a 10 feature MVP within 3 months that replaced a 5-7 day reporting cycle with a one click, real time report for senior leadership, and scaled an incentive platform to 4 new APAC markets at 100% payout accuracy. At Gigmo, took a GenAI support product from 0 to 1 with LLMs, vector search and RAG, lifting tickets resolved by up to 50%.</p>
-<h4>Professional experience</h4>
+<div class="hd"><h1>Kunal Aggarwal</h1>
+<div class="ct">New Delhi, India | <a href="mailto:kunal4538@gmail.com">kunal4538@gmail.com</a> | <a href="tel:+917838508333">+91 78385 08333</a> | <a href="https://www.linkedin.com/in/kunal4538/" target="_blank" rel="noopener">linkedin.com/in/kunal4538</a></div></div>
+<div class="kp"><div><b>5+ yrs</b><span>engineering, consulting, product</span></div><div><b>10 features</b><span>MVP shipped in 3 months</span></div><div><b>5-7 days to 1 click</b><span>reporting cycle, real time</span></div><div><b>Up to +50%</b><span>tickets resolved with GenAI</span></div></div>
 
-<div class="rh"><h3>Associate - Digital Product Manager, American Express</h3><span>Gurgaon | Jul '25 - Present</span></div>
-<ul>
-<li>Launched a <b>10 feature MVP within 3 months</b> for an enterprise wide employee data platform used by senior leadership, by running stakeholder discovery with 4 VPs across 4 business units, mapping every data need to its source system, and prioritizing the backlog by impact and feasibility to hold the deadline.</li>
-<li>Designed the UI/UX through wireframes and prototypes, walking stakeholders through the user journey, look and feel over multiple feedback rounds before build, then shipped an editable reporting grid where users add remarks, adjust values and refresh auto calculated derived fields, with export built in.</li>
-<li>Turned a <b>5-7 day manual reporting process into a one click, real time report</b> by writing the PRDs, user stories and business logic for every derived field, and partnering with a 4 person engineering team on a data pipeline integrating 4 source systems, evolving from a daily automated SFTP feed in the MVP to real time data. <button class="pl hot" type="button" data-d="a1" aria-expanded="false">&#9654; See it</button></li>
-<li>Secured Compliance sign off for payroll and PII data by negotiating data access with source system owners and designing role based access controls (view, edit and support tiers) and a full audit trail of every user change; ran beta testing to fix issues before go live, with zero incidents since launch.</li>
-<li>Drove adoption by training 50+ users across the VPs' teams on the new product and workflow.</li>
-<li>Lifted <b>adoption 200% across APAC</b> and cut plan related queries from 60-70 to single digits per market as Product Owner for the APAC market, by designing and rolling out a platform that replaced a fully manual, Excel based incentive process for ~600 colleagues. <button class="pl" type="button" data-d="a2" aria-expanded="false">&#9654; See it</button></li>
-<li>Shipped <b>20 features and onboarded 4 new markets</b> onto the company's incentive platform at 100% payout accuracy by owning requirements, scenario building and testing, and deployment end to end. <button class="pl" type="button" data-d="a3" aria-expanded="false">&#9654; See it</button></li>
-<li>Cut <b>approval deck creation from 3-4 weeks to 1 week</b> and review rounds from 10-12 to 4-5 by building a GPT/Copilot based tool that turns approved past decks into a reusable question set and structure for high stakes, 100 slide decks; adopted as standard practice for 5 decks to date and recognized with an internal award (Q2 FY26). <button class="pl" type="button" data-d="a4" aria-expanded="false">&#9654; See it</button></li>
-</ul>
+<section class="cs open"><button class="ch" type="button" aria-expanded="true"><span class="tt">Profile summary</span><span class="dt"></span><span class="tx">Collapse</span><i class="chev"></i><span class="pv">PM, 5+ years: fintech, HR tech, support SaaS. Engineering to consulting to product.</span></button><div class="cb"><div class="ci">
+<p>Product manager who turns manual, data-heavy workflows in fintech, HR tech and customer support into products people rely on, on a path from software engineering (Fidelity) to consulting (ZS) to product (Gigmo, American Express). At Amex: a 10-feature MVP in 3 months that replaced a 5-7 day reporting cycle with a one-click real-time report, and an incentive platform scaled to 4 new APAC markets at 100% payout accuracy. At Gigmo: a GenAI support product taken from 0 to 1 with LLMs, vector search and RAG.</p>
+</div></div></section>
 
-<div class="rh"><h3>Associate Consultant, ZS Associates</h3><span>Gurgaon | Mar '24 - Jul '25</span></div>
-<ul>
-<li>Cut <b>validation time 60%, saved ~156 hours a year</b> and lifted operational efficiency 40% by leading full cycle development of an SQL and Excel based data validation tool, from solution design and stakeholder alignment to deployment, and automating reporting workflows on no code platforms. <button class="pl" type="button" data-d="z1" aria-expanded="false">&#9654; See it</button></li>
-<li>Delivered <b>100% on time incentive compensation reporting</b> for a global pharma client across 4 business units and 1,000+ field reps by managing a team of 4 associates under tight monthly deadlines. <button class="pl" type="button" data-d="z3" aria-expanded="false">&#9654; See it</button></li>
-<li>Gave the client a defensible, benchmarked basis for payout decisions across 10+ brands a quarter by <b>modeling incentive plan payouts with Monte Carlo simulation</b>. <button class="pl" type="button" data-d="z2" aria-expanded="false">&#9654; See it</button></li>
-<li>Led post merger data integration and process harmonization for the client by defining partner lifecycle requirements and aligning sales operations across the combined organization.</li>
-<li>Reduced project delivery time 15% and costs 15% through process redesign, scope management and risk mitigation planning across client engagements.</li>
-</ul>
+<section class="cs open"><button class="ch" type="button" aria-expanded="true"><span class="tt">Professional experience</span><span class="dt">4 roles</span><span class="tx">Collapse</span><i class="chev"></i><span class="pv">American Express, ZS Associates, Gigmo Solutions, Fidelity International</span></button><div class="cb"><div class="ci">
 
-<div class="rh"><h3>Product Manager, Gigmo Solutions</h3><span>Gurgaon | May '23 - Jan '24</span></div>
-<ul>
-<li>Built a <b>GenAI support product from 0 to 1</b>, starting from an open goal of raising support efficiency: ran market and competitor research, turned it into a product roadmap and backlog, prioritized the MVP, wireframed the UI, and led beta testing and UAT with a 4 person engineering team; the app was later launched on the Zendesk Marketplace as a self hosted product customers train on their own servers.</li>
-<li>Increased <b>monthly tickets resolved by up to 50%</b> across a 100+ agent support team by shipping a ticket resolution engine that stores resolved tickets as embeddings in a vector database, retrieves the 10 closest matches by vector similarity, and reranks them on ticket text to surface the top 3 past solutions. <button class="pl" type="button" data-d="g1" aria-expanded="false">&#9654; See it</button></li>
-<li>Kept AI answers relevant with input and output relevance guardrails and a thumbs up/down feedback loop that reweights results and regenerates suggestions whenever a user flags a poor match.</li>
-<li>Shipped a <b>RAG chatbot</b> that answers user questions from uploaded company documents and web scraped content, using OpenAI models over document embeddings in a vector database. <button class="pl" type="button" data-d="g2" aria-expanded="false">&#9654; See it</button></li>
-<li>A/B tested 3 landing page layouts that varied the placement of the chatbot, history and core features, and shipped the variant that completed the same tasks in the fewest clicks. <button class="pl" type="button" data-d="g4" aria-expanded="false">&#9654; See it</button></li>
-<li>Automated <b>payroll for ~170 workers and lifted delivery efficiency 25%</b> by introducing Agile/Scrum to a 6 person team as Product Owner of an HR CRM on Power Apps covering the employee lifecycle from onboarding to offboarding across 8-9 screens for performance, attendance and payroll. <button class="pl" type="button" data-d="g3" aria-expanded="false">&#9654; See it</button></li>
-<li>Translated HR, operations and payroll requirements into BRDs and user stories, including Python API integrations for attendance data and Zendesk performance data feeding an automated payroll database.</li>
-</ul>
+<section class="cs role open"><button class="ch" type="button" aria-expanded="true"><span class="tt">Associate - Digital Product Manager, American Express</span><span class="dt">Gurgaon | Jul '25 - Present</span><span class="tx">Collapse</span><i class="chev"></i><span class="pv">10-feature MVP in 3 months | 5-7 days to one click | +200% APAC adoption</span></button><div class="cb"><div class="ci"><ul>
+<li>Launched a <b>10-feature MVP in 3 months</b> of an enterprise-wide employee data platform for senior leadership: discovery with 4 VPs across 4 business units, data-source mapping, impact-based backlog.</li>
+<li>Designed the UI/UX through wireframes and prototypes over multiple feedback rounds, then shipped an editable reporting grid (remarks, adjustable values, auto-calculated fields, export).</li>
+<li>Turned a <b>5-7 day manual report into one-click, real time</b> via PRDs, user stories and business logic, with a 4-person team on a pipeline across 4 source systems (SFTP feed in MVP, then real time). <button class="pl hot" type="button" data-d="a1" aria-expanded="false">&#9654; See it</button></li>
+<li>Secured Compliance sign-off for payroll and PII data: negotiated source access, role-based tiers (view, edit, support), a full audit trail and beta testing, with zero incidents since launch. Trained 50+ users.</li>
+<li>As APAC Product Owner, lifted <b>adoption 200%</b> and cut plan queries from 60-70 to single digits per market, replacing a manual Excel incentive process for ~600 colleagues. <button class="pl" type="button" data-d="a2" aria-expanded="false">&#9654; See it</button></li>
+<li>Shipped <b>20 features and onboarded 4 new markets</b> at 100% payout accuracy, owning requirements, scenario testing and deployment. <button class="pl" type="button" data-d="a3" aria-expanded="false">&#9654; See it</button></li>
+<li>Cut <b>approval-deck creation from 3-4 weeks to 1 week</b> and review rounds from 10-12 to 4-5 with a GPT/Copilot tool that reuses approved past decks; standard for 5 decks, internal award (Q2 FY26). <button class="pl" type="button" data-d="a4" aria-expanded="false">&#9654; See it</button></li>
+</ul></div></div></section>
 
-<div class="rh"><h3>Programmer, Fidelity International</h3><span>Gurgaon | May '19 - Jul '21</span></div>
-<ul>
-<li>Cut <b>API response time by ~5 seconds</b> and improved partner side reliability by redesigning partner facing APIs for two financial and asset management REST services. <button class="pl" type="button" data-d="f1" aria-expanded="false">&#9654; See it</button></li>
-<li>Raised <b>environment stability from 20% to 90%</b> through diagnostic planning and execution, reducing operational firefighting for the team. <button class="pl" type="button" data-d="f2" aria-expanded="false">&#9654; See it</button></li>
-<li>Delivered <b>$248K in cost savings</b> by redesigning inefficient workflows and technical solutions. <button class="pl" type="button" data-d="f3" aria-expanded="false">&#9654; See it</button></li>
-<li>Managed client facing project delivery, coordinating cross functional teams to keep scope and timelines on track.</li>
-</ul>
+<section class="cs role"><button class="ch" type="button" aria-expanded="false"><span class="tt">Associate Consultant, ZS Associates</span><span class="dt">Gurgaon | Mar '24 - Jul '25</span><span class="tx">Expand</span><i class="chev"></i><span class="pv">60% less validation time | 100% on-time reporting | Monte Carlo payouts</span></button><div class="cb"><div class="ci"><ul>
+<li>Cut <b>validation time 60% (~156 hours a year)</b> and lifted efficiency 40% by leading an SQL and Excel data validation tool end to end and automating reporting on no-code platforms. <button class="pl" type="button" data-d="z1" aria-expanded="false">&#9654; See it</button></li>
+<li>Delivered <b>100% on-time incentive reporting</b> for a global pharma client across 4 business units and 1,000+ field reps, managing 4 associates under monthly deadlines. <button class="pl" type="button" data-d="z3" aria-expanded="false">&#9654; See it</button></li>
+<li>Modelled incentive payouts with <b>Monte Carlo simulation</b> across 10+ brands a quarter, giving the client a defensible, benchmarked basis for payout decisions. <button class="pl" type="button" data-d="z2" aria-expanded="false">&#9654; See it</button></li>
+<li>Led post-merger data integration and process harmonisation, and cut delivery time and costs 15% each through process redesign, scope management and risk planning.</li>
+</ul></div></div></section>
 
-<h4>Internships</h4>
-<div class="rh"><h3>General Management Intern, Straive</h3><span>Apr '22 - May '22</span></div>
-<ul><li>Coached 15+ design and development employees on Agile and launched the first sprint of an Agile pilot with a team of 7; presented a roadmap projecting ~$64K in annual cost savings. <button class="pl" type="button" data-d="s1" aria-expanded="false">&#9654; See it</button></li></ul>
-<div class="rh"><h3>Android Developer Intern, Doubtnut</h3><span>Apr '17 - May '17</span></div>
-<ul><li>Revamped and rebuilt the dynamic user interface of the Doubtnut Android app.</li></ul>
+<section class="cs role"><button class="ch" type="button" aria-expanded="false"><span class="tt">Product Manager, Gigmo Solutions</span><span class="dt">Gurgaon | May '23 - Jan '24</span><span class="tx">Expand</span><i class="chev"></i><span class="pv">GenAI product 0 to 1 | up to +50% tickets resolved | RAG chatbot | HR CRM</span></button><div class="cb"><div class="ci"><ul>
+<li>Built a <b>GenAI support product from 0 to 1</b>: market research, roadmap, MVP, wireframes, beta and UAT with a 4-person team; later launched on the Zendesk Marketplace as a self-hosted app.</li>
+<li>Lifted <b>tickets resolved by up to 50%</b> across 100+ agents with a resolution engine: embeddings in a vector database, 10 nearest matches, reranked to the top 3 past solutions. <button class="pl" type="button" data-d="g1" aria-expanded="false">&#9654; See it</button></li>
+<li>Added relevance guardrails and a thumbs up/down loop that reweights results, and shipped a <b>RAG chatbot</b> over uploaded documents and scraped web content (OpenAI and a vector DB). <button class="pl" type="button" data-d="g2" aria-expanded="false">&#9654; See it</button></li>
+<li>A/B tested 3 landing-page layouts and shipped the one that completed the same tasks in the fewest clicks. <button class="pl" type="button" data-d="g4" aria-expanded="false">&#9654; See it</button></li>
+<li>As Product Owner of an HR CRM on Power Apps (8-9 screens, 6-person Agile team), automated <b>payroll for ~170 workers</b> and lifted delivery efficiency 25%; wrote BRDs and Python API integrations. <button class="pl" type="button" data-d="g3" aria-expanded="false">&#9654; See it</button></li>
+</ul></div></div></section>
 
-<h4>Education</h4>
-<div class="rh"><h3>MBA, Indian Institute of Management, Nagpur</h3><span>2023</span></div>
-<div class="rh"><h3>B.Tech, Computer Science and Engineering, The NorthCap University, Gurgaon</h3><span>2019</span></div>
+<section class="cs role"><button class="ch" type="button" aria-expanded="false"><span class="tt">Programmer, Fidelity International</span><span class="dt">Gurgaon | May '19 - Jul '21</span><span class="tx">Expand</span><i class="chev"></i><span class="pv">5 sec faster APIs | stability 20% to 90% | $248K saved</span></button><div class="cb"><div class="ci"><ul>
+<li>Cut <b>API response time by ~5 seconds</b> by redesigning partner-facing APIs for two financial and asset management REST services. <button class="pl" type="button" data-d="f1" aria-expanded="false">&#9654; See it</button></li>
+<li>Raised <b>environment stability from 20% to 90%</b> through diagnostic planning and execution, cutting operational firefighting. <button class="pl" type="button" data-d="f2" aria-expanded="false">&#9654; See it</button></li>
+<li>Delivered <b>$248K in cost savings</b> by redesigning inefficient workflows and technical solutions, while managing client-facing delivery. <button class="pl" type="button" data-d="f3" aria-expanded="false">&#9654; See it</button></li>
+</ul></div></div></section>
 
-<h4>Skills and certifications</h4>
-<p><b>Product management:</b> Product strategy, roadmap and discovery, market and competitive research, stakeholder management, backlog prioritization, MVP scoping, 0 to 1 development, PRDs, BRDs and user stories, wireframing and prototyping, UI/UX, A/B testing, product analytics and KPIs, beta testing and UAT, Agile/Scrum, user training and adoption.</p>
-<p><b>AI and data:</b> Generative AI, LLMs (OpenAI GPT), Microsoft Copilot, RAG, vector search and embeddings, reranking, AI guardrails, human feedback loops, SQL, Python, REST APIs, data pipelines (SFTP), data validation, Monte Carlo simulation.</p>
-<p><b>Governance:</b> Compliance and data governance, role based access control, PII and payroll data, audit trails. <b>Tools:</b> Jira, Figma, Power Apps, Zendesk, Excel, no code platforms.</p>
-<p><b>Certifications:</b> PMI Agile Certified Practitioner (PMI-ACP), Product Management Certification, Six Sigma (LinkedIn Learning).</p>
-<h4>Recognition and publication</h4>
-<p>Internal Amex award (Q2 FY26) for an AI automation initiative supporting Product Owner team workflows. Publication: "Smart Walking Stick: An Aid to Visually Impaired", Springer, Taylor and Francis (2022).</p>
+</div></div></section>
+
+<div class="two">
+<section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Internships</span><span class="dt">2 roles</span><span class="tx">Expand</span><i class="chev"></i><span class="pv">Straive (Agile pilot), Doubtnut (Android)</span></button><div class="cb"><div class="ci"><ul>
+<li><b>General Management Intern, Straive</b> (Apr-May '22): coached 15+ employees on Agile, launched the first sprint with a team of 7 and presented a roadmap projecting ~$64K annual savings. <button class="pl" type="button" data-d="s1" aria-expanded="false">&#9654; See it</button></li>
+<li><b>Android Developer Intern, Doubtnut</b> (Apr-May '17): rebuilt the dynamic user interface of the Android app.</li>
+</ul></div></div></section>
+<section class="cs open"><button class="ch" type="button" aria-expanded="true"><span class="tt">Education</span><span class="dt"></span><span class="tx">Collapse</span><i class="chev"></i></button><div class="cb"><div class="ci"><ul>
+<li><b>MBA, IIM Nagpur</b> (2023)</li>
+<li><b>B.Tech, Computer Science and Engineering, The NorthCap University</b> (2019)</li>
+</ul></div></div></section>
+<section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Skills and tools</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">Product, AI and data, governance, tools</span></button><div class="cb"><div class="ci">
+<p><b>Product:</b> strategy, roadmap, discovery, 0 to 1, MVP scoping, PRDs, BRDs, user stories, wireframing, UI/UX, A/B testing, KPIs, UAT, Agile/Scrum, adoption.</p>
+<p><b>AI and data:</b> GenAI, LLMs (OpenAI), Copilot, RAG, vector search, reranking, guardrails, SQL, Python, REST APIs, SFTP pipelines, Monte Carlo.</p>
+<p><b>Governance:</b> compliance, RBAC, PII, audit trails. <b>Tools:</b> Jira, Figma, Power Apps, Zendesk, Excel, no-code.</p>
+</div></div></section>
+<section class="cs"><button class="ch" type="button" aria-expanded="false"><span class="tt">Certifications and recognition</span><span class="dt"></span><span class="tx">Expand</span><i class="chev"></i><span class="pv">PMI-ACP, Six Sigma, Amex award, Springer paper</span></button><div class="cb"><div class="ci"><ul>
+<li>PMI Agile Certified Practitioner (PMI-ACP), Product Management Certification, Six Sigma (LinkedIn Learning).</li>
+<li>Internal Amex award (Q2 FY26) for an AI automation initiative supporting Product Owner workflows.</li>
+<li>Publication: "Smart Walking Stick: An Aid to Visually Impaired", Springer, Taylor and Francis (2022).</li>
+</ul></div></div></section>
+</div>
 </div></div></div></section>
 
 <section class="sec" id="work"><div class="wrap">
@@ -292,6 +322,13 @@ function toggle(b){var li=b.closest('li'),ex=li.querySelector('.stage');
 if(ex){ex.remove();b.setAttribute('aria-expanded','false');b.innerHTML='&#9654; See it';return}
 var st=d.createElement('div');st.className='stage';li.appendChild(st);b.setAttribute('aria-expanded','true');b.innerHTML='Hide';b.classList.remove('hot');show(b.getAttribute('data-d'),st)}
 [].forEach.call(d.querySelectorAll('.pl'),function(b){b.addEventListener('click',function(){toggle(b)})});
+
+function setOpen(sc,o){sc.classList.toggle('open',o);var b=sc.querySelector(':scope>.ch');b.setAttribute('aria-expanded',o?'true':'false');b.querySelector('.tx').textContent=o?'Collapse':'Expand';var ci=sc.querySelector(':scope>.cb>.ci');if(o)ci.removeAttribute('inert');else ci.setAttribute('inert','')}
+[].forEach.call(d.querySelectorAll('.cs'),function(sc){setOpen(sc,sc.classList.contains('open'))});
+d.addEventListener('click',function(e){var b=e.target.closest('.ch');if(b)setOpen(b.parentNode,!b.parentNode.classList.contains('open'))});
+function all(o){[].forEach.call(d.querySelectorAll('.cs'),function(sc){setOpen(sc,o)})}
+d.getElementById('ea').onclick=function(){all(true)};d.getElementById('ca').onclick=function(){all(false)};
+addEventListener('beforeprint',function(){all(true)});
 var first=d.querySelector('.pl'),io=new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!first.parentNode.querySelector('.stage'))toggle(first);io.disconnect()}},{threshold:1});io.observe(first);
 var P=[['7376836235291643904','Present bias','Big Billion Days triggered déjà vu… and a DSLR I never needed.'],
 ['7383000330957021184','Ego bias','Being right doesn’t always mean you’ll win the argument.'],
